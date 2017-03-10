@@ -4,24 +4,4 @@
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>S1BarCodeScannerVF</label>
-    <packageVersions>
-        <majorNumber>4</majorNumber>
-        <minorNumber>18</minorNumber>
-        <namespace>kkltng</namespace>
-    </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>14</minorNumber>
-        <namespace>mvc</namespace>
-    </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>12</minorNumber>
-        <namespace>sf_chttr_apps</namespace>
-    </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>7</minorNumber>
-        <namespace>sf_com_apps</namespace>
-    </packageVersions>
 </ApexPage>
