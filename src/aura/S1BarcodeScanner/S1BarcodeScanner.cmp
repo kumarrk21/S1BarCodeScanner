@@ -1,0 +1,15 @@
+<aura:component access="GLOBAL" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" controller="JWTGenerator" >
+	
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="gotToken" type="Boolean" default="false" />
+	<aura:attribute name="rendered" type="Boolean" default="false" />
+	<aura:attribute name="message" type="String" default="Opening Scanner..." />
+	<aura:attribute name="ckey" type="String"/>
+	<aura:attribute name="certName" type="String"/>
+    
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
+	<aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+
+	<p>{!v.message}</p>
+
+</aura:component>
