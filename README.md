@@ -11,7 +11,7 @@ When (and if) Salesforce1 for iOS supports VF deeplinking, you won't need the JW
 1. Once deployed, go to Setup->Administer->Security Controls->Certificate and Key Management
 2. Create a Self Signed Certificate. Note down the Unique Name and download the certificate to your desktop/laptop
 3. Next, create a connected app (Setup->Create->Apps->Connected Apps->New)
-4. Make sure 'Enable OAuth Settings' is checked
+4. Make sure 'Enable OAuth Settings' is checked; callback URL can be something like 'barcode:///mobilesdk/detect/oauth/done'
 5. Choose required oAuth scopes (Full access is good for testing but for production you may want to choose the appropriate ones)
 6. Make sure 'Use Digital Signatures' is checked. Click 'Choose File' and upload the certificate that you downloaded step 1
 7. Save the connected app and note down Consumer Key
@@ -25,7 +25,7 @@ Label: Barcode Scanner
 S1JWTAuth Name = Barcode_Scanner
 Consumer key = Key from step 7
 Certificate Name = Certificate name from step 2
-14. Add a custom quick action to Accounts of type 'Lightning Component'. Choose the component 'S1BarcodeScanner'
+14. Add a custom quick action to Accounts of type 'Lightning Component'. Choose the component 'c:S1BarcodeScanner'
 15. Place this custom quick action in pagelayout (under Salesforce1 panel)
 16. Download this QR code app from app store "https://itunes.apple.com/us/app/qr-code-reader-by-scan/id698925807" (Check google play store for Android version)
 17. Launch the Salesforce1 app, tap on an account, tap on the quick action you create above, this should open up the scan app, scan a barcode and once done, will launch a VF page in Safari, create an asset record for the account and navigate you back to Salesforce1 to edit the created asset record.

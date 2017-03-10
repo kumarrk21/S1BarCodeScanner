@@ -5,6 +5,10 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>S1BarCodeScannerVF</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
         <members>S1BarcodeScanner</members>
         <name>AuraDefinitionBundle</name>
     </types>

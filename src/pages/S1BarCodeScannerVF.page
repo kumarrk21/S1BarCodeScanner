@@ -1,0 +1,80 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false">
+    <apex:remoteObjects jsNamespace="myModel">
+        <apex:remoteObjectModel name="Asset" fields="Name,Id,AccountId,SerialNumber" />
+    </apex:remoteObjects>
+    <script>
+    var scannedData = "{!$CurrentPage.parameters.scannedData}";
+    var result = scannedData.split('_');
+    var s1url = 'salesforce1://sObject/Account/home';
+    var asset = new myModel.Asset();
+    try {
+        var scannedId = result[0];
+        var accId = result[1];
+
+        console.log('account ID is ', accId);
+        console.log('scanned ID is ', scannedId);
+
+        s1url = 'salesforce1://sObject/' + accId + '/view';
+        getAsset();
+
+
+    } catch (e) {
+        console.log('Error is ', e);
+        navigateToS1();
+    }
+
+    function getAsset() {
+        asset.retrieve({
+            where: {
+                SerialNumber: {
+                    eq: scannedId
+                },
+                AccountId: {
+                    eq: accId
+                }
+            }
+        }, function(err, records) {
+            if (!err && records.length > 0) {
+                updateAsset(records[0].get('Id'));
+            } else {
+                console.log('Creating..');
+                createAsset();
+            }
+
+        });
+    }
+
+    function createAsset() {
+        asset.create({
+            Name: 'Scanned Product: ' + scannedId,
+            SerialNumber: scannedId,
+            AccountId: accId
+        }, function(err, records) {
+            if (!err) {
+                console.log('created returned', records);
+                s1url = 'salesforce1://sObject/' + records[0] + '/edit';
+                navigateToS1();
+            } else {
+                console.log('created error', err);
+                navigateToS1();
+            }
+        });
+    }
+
+    function updateAsset(id) {
+        s1url = 'salesforce1://sObject/' + id + '/edit';
+        navigateToS1();
+    }
+
+    function navigateToS1() {
+        var proc = window.setInterval(function() {
+            window.location.href = "/secur/logout.jsp";
+            window.close();
+            typeof proc !== 'undefined' && window.clearInterval(proc);
+        }, 3000);
+        window.location.href = s1url;
+    }
+
+    </script>
+    <h1>Processing.....</h1>
+</apex:page>
