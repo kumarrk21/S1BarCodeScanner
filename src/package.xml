@@ -13,10 +13,6 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>S1JWTAuth.Barcode_Scanner</members>
-        <name>CustomMetadata</name>
-    </types>
-    <types>
         <members>S1JWTAuth__mdt</members>
         <name>CustomObject</name>
     </types>
