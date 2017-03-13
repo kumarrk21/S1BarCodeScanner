@@ -21,10 +21,10 @@ When (and if) Salesforce1 for iOS supports VF deeplinking, you won't need the JW
 11. Now go to Setup->Administer->Security Controls->Remote site settings->New Remote site. Add an entry for "https://login.salesforce.com" (https://test.salesforce.com for sandbox)
 12. Then go to Setup->Build->Develop->Custom metadata types->S1JWTAuth->ManageS1JWTAuth. Cick 'New'
 13. Add an entry with label as below 
-* Label: Barcode Scanner
-* S1JWTAuth Name = Barcode_Scanner
-* Consumer key = Key from step 7
-* Certificate Name = Certificate name from step 2
+⋅⋅* Label: Barcode Scanner
+⋅⋅* S1JWTAuth Name = Barcode_Scanner
+⋅⋅* Consumer key = Key from step 7
+⋅⋅* Certificate Name = Certificate name from step 2
 14. Add a custom quick action to Accounts of type 'Lightning Component'. Choose the component 'c:S1BarcodeScanner'
 15. Place this custom quick action in pagelayout (under Salesforce1 panel)
 16. Download this QR code app from app store "https://itunes.apple.com/us/app/qr-code-reader-by-scan/id698925807" (Check google play store for Android version)
