@@ -1,11 +1,11 @@
 Barcode Scanner Lightning Component
 ===================================
-This project contains sample code for native barcode scanning in Salesforce1. It contains a custom Lightning component that can be attached to a custom quick action on account object. On tapping the quick action in Salesforce1, it will launch <a href="https://itunes.apple.com/us/app/qr-code-reader-by-scan/id698925807">this</a> QR Code Reader app on the device to scan a barcode. Once scanned, the control is returned to a Visualforce page for attaching the scanned barcode as an 'Asset' to the account object. Once successfully attached, it redirects the user to asset record in Salesforce1 for further updates.
+This project contains sample code for native barcode scanning in Salesforce1. It contains a custom Lightning component that can be attached to a custom quick action on account record. On tapping the quick action in Salesforce1, it will launch <a href="https://itunes.apple.com/us/app/qr-code-reader-by-scan/id698925807">this</a> QR Code Reader app on the device to scan a barcode. Once scanned, the control is returned to a Visualforce page for attaching the scanned barcode as an 'Asset' to the account record. Once successfully attached, the Visualforce page redirects the user to asset record in Salesforce1 for further updates.
 
-Salesforce1 for iOS doesn't support URL deeplinking of Visualforce pages. It currently (as of Mar'2017) only supports deeplinking to a specific record. Please check <a href="https://resources.docs.salesforce.com/sfdc/pdf/salesforce1_url_schemes.pdf">here</a> for more information.
-In most cases, after scanning the barcode, you may want to pre-process before navigating the user to a record in Salesforce1. For e.g., in this sample, the user scans a barcode that is attached as an asset to the account. Since VF deeplinking is not supported in Salesforce1, this component launches the VF page in the device browser before getting the user back to Salesforce1. Since Winter '17 release, Apex supports creating access tokens (aka Session IDs) using JWT flow. This component, uses the JWT flow to generate an accesstoken so that the user is not prompted to authenticate in the intermediate VF page. Please check <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_class_Auth_JWT.htm">here</a> for more information.
+Salesforce1 for iOS doesn't support URL deeplinking of Visualforce pages (yet). It currently (as of Mar'2017 / Version 12.0) only supports deeplinking to a specific record. Please check <a href="https://resources.docs.salesforce.com/sfdc/pdf/salesforce1_url_schemes.pdf">here</a> for more information.
+In most cases, after scanning the barcode, you may want to pre-process before navigating the user to a record in Salesforce1. For e.g., in this sample, the user scans a barcode that is attached as an asset to the account. Since VF deeplinking is not supported in Salesforce1 (iOS), this component launches the VF page within the device browser before getting the user back to Salesforce1. Since Winter '17 release, Apex supports creating access tokens (aka Session IDs) using JWT flow. This component, uses the JWT flow to generate an accesstoken so that the user is not prompted to authenticate in the intermediate VF page. Please check <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_class_Auth_JWT.htm">here</a> for more information.
 
-When (and if) Salesforce1 for iOS supports VF deeplinking, you won't need the JWT flow (and in Android, you won't need this JWT flow either as Salesforce1 in Android support VF deeplinking). The component can simply launch the Scan app and have it return the control back to Salesforce1. Until then, you can use this trick to enable pre-processing. Follow the below steps to install this in your Developer or Sandbox org
+When (and if) Salesforce1 for iOS supports VF deeplinking, you won't need the JWT flow (and in Android, you won't need this JWT flow either as Salesforce1 in Android already supports VF deeplinking). The component can simply launch the Scan app and have it return the control back to Salesforce1. Until then, you can use this trick to enable pre-processing. Follow the below steps to install this in your Developer or Sandbox org
 
 0. Click 'Deploy to Salsforce button at the end of this page'
 1. Once deployed, go to Setup->Administer->Security Controls->Certificate and Key Management
@@ -21,15 +21,16 @@ When (and if) Salesforce1 for iOS supports VF deeplinking, you won't need the JW
 11. Now go to Setup->Administer->Security Controls->Remote site settings->New Remote site. Add an entry for "https://login.salesforce.com" (https://test.salesforce.com for sandbox)
 12. Then go to Setup->Build->Develop->Custom metadata types->S1JWTAuth->ManageS1JWTAuth. Cick 'New'
 13. Add an entry with label as below 
-Label: Barcode Scanner
-S1JWTAuth Name = Barcode_Scanner
-Consumer key = Key from step 7
-Certificate Name = Certificate name from step 2
+* Label: Barcode Scanner
+* S1JWTAuth Name = Barcode_Scanner
+* Consumer key = Key from step 7
+* Certificate Name = Certificate name from step 2
 14. Add a custom quick action to Accounts of type 'Lightning Component'. Choose the component 'c:S1BarcodeScanner'
 15. Place this custom quick action in pagelayout (under Salesforce1 panel)
 16. Download this QR code app from app store "https://itunes.apple.com/us/app/qr-code-reader-by-scan/id698925807" (Check google play store for Android version)
 17. Launch the Salesforce1 app, tap on an account, tap on the quick action you create above, this should open up the scan app, scan a barcode and once done, will launch a VF page in Safari, create an asset record for the account and navigate you back to Salesforce1 to edit the created asset record.
 
+Note: This project uses the free version of Scan app, however, for production code, you may want to invest in a commercially available barcode scanner app that allows URL deeplinking.
 
 <a href="https://githubsfdeploy.herokuapp.com?">
   <img alt="Deploy to Salesforce"
