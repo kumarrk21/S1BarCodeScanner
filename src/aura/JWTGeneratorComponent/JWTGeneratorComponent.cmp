@@ -1,0 +1,36 @@
+<aura:component access="GLOBAL" implements="flexipage:availableForAllPageTypes,force:appHostable" controller="JWTGeneratorValidatorController" >
+	 <ltng:require styles="/resource/slds214/assets/styles/salesforce-lightning-design-system.css" />
+	<aura:attribute name="token" type="String"/>
+	<aura:attribute name="ckey" type="String" default=""/>
+	<aura:attribute name="certName" type="String" default="JWT_Token_Cert"/>
+	<aura:attribute name="tokenValidity" type="Integer" default="600"/>
+	<lightning:layout horizontalAlign="spread">
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:input name="ckey" value="{!v.ckey}" label="Consumer Key" maxlength="128" />
+		</lightning:layoutItem>
+	</lightning:layout>
+	<lightning:layout horizontalAlign="spread">
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:input name="certName" value="{!v.certName}" label="Cert Name" />
+		</lightning:layoutItem>
+	</lightning:layout>
+	<lightning:layout horizontalAlign="spread">
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:input name="tokenValidity" type="number" value="{!v.tokenValidity}" label="Token Validity" />
+		</lightning:layoutItem>
+	</lightning:layout>
+	<lightning:layout horizontalAlign="space">
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:button variant="brand" label="Get Access Token" onclick="{!c.getAccToken}" />
+		</lightning:layoutItem>
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:button variant="brand" label="Get JWT Token" onclick="{!c.getJToken}" />
+		</lightning:layoutItem>
+	</lightning:layout>
+	<lightning:layout horizontalAlign="space">
+		<lightning:layoutItem flexibility="grow" padding="around-small">
+			Received Token is: {!v.token}
+		</lightning:layoutItem>
+	</lightning:layout>
+
+</aura:component>

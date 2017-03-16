@@ -7,7 +7,6 @@
         apexMethod.setCallback(this, function(response) {
             var state = response.getState();
             if (state == 'SUCCESS') {
-                console.log('response is', response.getReturnValue());
                 var resp = JSON.parse(response.getReturnValue());
                 var returnURL = resp.baseUrl + '/secur/frontdoor.jsp?sid=' + resp.accessToken + '&retURL=/apex/S1BarCodeScannerVF?scannedData=SCANNED_DATA_' + cmp.get('v.recordId');
                 cmp.set('v.gotToken', true);

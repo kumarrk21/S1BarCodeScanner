@@ -1,4 +1,4 @@
-<aura:component access="GLOBAL" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" controller="JWTGenerator" >
+<aura:component access="GLOBAL" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" controller="S1BarcodeScannerController" >
 	
 	<aura:attribute name="recordId" type="String" />
 	<aura:attribute name="gotToken" type="Boolean" default="false" />

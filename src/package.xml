@@ -9,6 +9,8 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>JWTGeneratorApp</members>
+        <members>JWTGeneratorComponent</members>
         <members>S1BarcodeScanner</members>
         <name>AuraDefinitionBundle</name>
     </types>
